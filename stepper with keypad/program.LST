@@ -1,0 +1,71 @@
+C51 COMPILER V9.53.0.0   PROGRAM                                                           02/10/2025 15:20:13 PAGE 1   
+
+
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROGRAM
+OBJECT MODULE PLACED IN program.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE program.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #define Motor P2;
+   3          sbit C1=P1^0;
+   4          sbit C2=P1^1;
+   5          sbit C3=P1^2;
+   6          sbit R1=P1^3;
+   7          sbit R2=P1^4;
+   8          sbit R3=P1^5;
+   9          sbit R4=P1^6;
+  10          void halfwave();
+  11          void fullwave();
+  12          void wave();
+  13          void delay();
+  14          void main(){
+  15   1      P1=0x00;
+  16   1      P2=0x00;
+  17   1      while(1){
+  18   2        R1=0;
+  19   2        C1=C2=C3=1;
+  20   2        if(C1==0){
+  21   3        halfwave();
+  22   3        delay();}
+  23   2        if(C2==0){
+  24   3        fullwave();
+  25   3        delay();}
+  26   2        if(C3==0){
+  27   3        wave();
+  28   3        delay();}}}
+  29          void halfwave(unsigned int i){
+  30   1        unsigned char a[10]={0x00,0x08,0x0C,0x04,0x06,0x02,0x03,0x01,0x09};
+  31   1        for(i=0;i<10;i++){
+  32   2        P2=a[i];
+  33   2        delay();}}
+  34          void fullwave(unsigned int i){
+  35   1        unsigned char a[6]={0x00,0x0C,0x06,0x03,0x09};
+  36   1        for(i=0;i<6;i++){
+  37   2        P2=a[i];
+  38   2        delay();}}
+  39          void wave(unsigned int i){
+  40   1        unsigned char a[6]={0x00,0x08,0x04,0x02,0x01};
+  41   1        for(i=0;i<6;i++){
+  42   2        P2=a[i];
+  43   2        delay();}}
+  44          void delay(){
+  45   1        unsigned int i;
+  46   1        for(i=0;i<35000;i++);}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    231    ----
+   CONSTANT SIZE    =     22    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      28
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.53.0.0   PROGRAM                                                           02/10/2025 15:20:13 PAGE 2   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
