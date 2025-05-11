@@ -1,0 +1,129 @@
+C51 COMPILER V9.53.0.0   PROGRAM                                                           01/31/2025 16:27:21 PAGE 1   
+
+
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROGRAM
+OBJECT MODULE PLACED IN program.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE program.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          sbit R1=P1^0;
+   3          sbit R2=P1^1;
+   4          sbit R3=P1^2;
+   5          sbit R4=P1^3;
+   6          sbit C1=P1^4;
+   7          sbit C2=P1^5;
+   8          sbit C3=P1^6;
+   9          sbit C4=P1^7;
+  10          sbit RS=P2^0;
+  11          sbit RW=P2^1;
+  12          sbit EN=P2^2;
+  13          void cmd(unsigned char a);
+  14          void dat(unsigned char a);
+  15          void delay();
+  16          void RF1();
+  17          void RF2();
+  18          void RF3();
+  19          void RF4();
+  20          void main(){
+  21   1      cmd(0x38);
+  22   1      cmd(0x0C);
+  23   1      cmd(0x10);
+  24   1      cmd(0x01);
+  25   1      cmd(0x06);
+  26   1      cmd(0x80);
+  27   1      cmd(0xC0);
+  28   1      while(1){
+  29   2        C1=C2=C3=C4=1;
+  30   2        R1=R2=R3=R4=0;
+  31   2        if(C1==0)
+  32   2        RF1();
+  33   2        if(C2==0)
+  34   2        RF2();
+  35   2        if(C3==0)
+  36   2        RF3();
+  37   2        if(C4==0)
+  38   2        RF4();
+  39   2      cmd(0x0C);}}
+  40          void RF1(){
+  41   1        R1=R2=R3=R4=1;
+  42   1        C1=C2=C3=C4=0;
+  43   1        if(R1==0)
+  44   1          dat('7');
+  45   1        if(R2==0)
+  46   1          dat('4');
+  47   1        if(R3==0)
+  48   1          dat('1');
+  49   1        if(R4==0)
+  50   1          cmd(0x01);
+  51   1          cmd(0x0C);}
+  52          void RF2(){
+  53   1        R1=R2=R3=R4=1;
+  54   1        C1=C2=C3=C4=0;
+  55   1        if(R1==0)
+C51 COMPILER V9.53.0.0   PROGRAM                                                           01/31/2025 16:27:21 PAGE 2   
+
+  56   1          dat('8');
+  57   1        if(R2==0)
+  58   1          dat('5');
+  59   1        if(R3==0)
+  60   1          dat('2');
+  61   1        if(R4==0)
+  62   1          dat('0');
+  63   1          cmd(0x0C);}
+  64          void RF3(){
+  65   1        R1=R2=R3=R4=1;
+  66   1        C1=C2=C3=C4=0;
+  67   1        if(R1==0)
+  68   1          dat('9');
+  69   1        if(R2==0)
+  70   1          dat('6');
+  71   1        if(R3==0)
+  72   1          dat('3');
+  73   1        if(R4==0)
+  74   1          dat('=');
+  75   1          cmd(0x0C);}
+  76          void RF4(){
+  77   1        R1=R2=R3=R4=1;
+  78   1        C1=C2=C3=C4=0;
+  79   1        if(R1==0)
+  80   1          dat('/');
+  81   1        if(R2==0)
+  82   1          dat('x');
+  83   1        if(R3==0)
+  84   1          dat('-');
+  85   1        if(R4==0)
+  86   1          dat('+');
+  87   1          cmd(0x0C);}
+  88          void cmd(unsigned char a){
+  89   1        P3=a;
+  90   1        RS=0;
+  91   1        RW=0;
+  92   1        EN=1;
+  93   1        delay();
+  94   1        EN=0;}
+  95          void dat(unsigned char a){
+  96   1        P3=a;
+  97   1        RS=1;
+  98   1        RW=0;
+  99   1        EN=1;
+ 100   1        delay();
+ 101   1        EN=0;}
+ 102          void delay(){
+ 103   1        unsigned int i;
+ 104   1        for(i=0;i<25000;i++);}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    337    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
