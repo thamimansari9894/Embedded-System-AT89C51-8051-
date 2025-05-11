@@ -1,0 +1,199 @@
+C51 COMPILER V9.53.0.0   PROGRAM                                                           02/06/2025 15:21:30 PAGE 1   
+
+
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROGRAM
+OBJECT MODULE PLACED IN program.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE program.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #define seg P0;
+   3          sbit R1=P1^3;
+   4          sbit R2=P1^4;
+   5          sbit R3=P1^5;
+   6          sbit R4=P1^6;
+   7          sbit C1=P1^0;
+   8          sbit C2=P1^1;
+   9          sbit C3=P1^2;
+  10          sbit RS=P2^5;
+  11          sbit RW=P2^6;
+  12          sbit EN=P2^7;
+  13          sbit IN1=P2^0;
+  14          sbit IN2=P2^1;
+  15          sbit IN3=P2^3;
+  16          sbit IN4=P2^4;
+  17          sbit EN1=P2^2;
+  18          sbit EN2=P1^7;
+  19          void cmd(unsigned char a);
+  20          void dat(unsigned char a);
+  21          void print(unsigned char name[],unsigned int a);
+  22          void RF1();
+  23          void RF2();
+  24          void RF3(); 
+  25          void delay();
+  26          void main(){ 
+  27   1      P0=0X00;
+  28   1      P1=0x00;
+  29   1      P2=0x00;
+  30   1      P2=0x00;
+  31   1      EN1=1;
+  32   1      EN2=1;
+  33   1      cmd(0x38);
+  34   1      cmd(0x0C);
+  35   1      cmd(0x10);
+  36   1      cmd(0x01);
+  37   1      cmd(0x06);
+  38   1      cmd(0x80);
+  39   1      cmd(0xC0);
+  40   1      while(1){
+  41   2        C1=C2=C3=1;
+  42   2        R1=R2=R3=R4=0;
+  43   2        if(C1==0)
+  44   2        RF1();
+  45   2        if(C2==0)
+  46   2        RF2();
+  47   2        if(C3==0)
+  48   2        RF3();
+  49   2        cmd(0x0C);}}
+  50          void RF1(){
+  51   1        R1=R2=R3=R4=1;
+  52   1        C1=C2=C3=0;
+  53   1        if(R1==0){
+  54   2        P0=(0x06);
+  55   2        IN1=1;
+C51 COMPILER V9.53.0.0   PROGRAM                                                           02/06/2025 15:21:30 PAGE 2   
+
+  56   2        IN2=0;
+  57   2        IN3=0;
+  58   2        IN4=0;
+  59   2        delay();
+  60   2        cmd(0x01);
+  61   2        print("M1Forw",6);
+  62   2        cmd(0xC0);}
+  63   1        if(R2==0){
+  64   2        P0=(0x66);
+  65   2        IN1=0;
+  66   2        IN2=0;
+  67   2        IN3=0;
+  68   2        IN4=1;
+  69   2        delay();
+  70   2        cmd(0x01);
+  71   2        print("M2Rev",5);
+  72   2        cmd(0xC0);}
+  73   1        if(R3==0){
+  74   2        P0=(0x07);    
+  75   2        IN1=1;
+  76   2        IN2=0;
+  77   2        IN3=0;
+  78   2        IN4=1;
+  79   2        delay();
+  80   2        cmd(0x01);
+  81   2        print("M1ForwM2Rev",11);
+  82   2        cmd(0x0C);}}
+  83          void RF2(){
+  84   1        R1=R2=R3=R4=1;{
+  85   2        C1=C2=C3=0;
+  86   2        if(R1==0){
+  87   3        P0=(0x5B);
+  88   3        IN1=0;
+  89   3        IN2=1;
+  90   3        IN3=0;
+  91   3        IN4=0;
+  92   3        delay();
+  93   3        cmd(0x01);
+  94   3        print("M1Rev",5);
+  95   3        cmd(0x0C);}
+  96   2        if(R2==0){
+  97   3        P0=(0x6D);
+  98   3        IN1=1;
+  99   3        IN2=0;
+ 100   3        IN3=1;
+ 101   3        IN4=0;
+ 102   3        delay();
+ 103   3        cmd(0x01);
+ 104   3        print("M1 M2Forw",9);
+ 105   3        cmd(0x0C);
+ 106   3        delay();}
+ 107   2        if(R3==0){
+ 108   3        P0=(0x7F);
+ 109   3        IN1=0;
+ 110   3        IN2=1;
+ 111   3        IN3=1;
+ 112   3        IN4=0;
+ 113   3        delay();
+ 114   3        cmd(0x01);
+ 115   3        print("M1Rev M2Forw",12);
+ 116   3        cmd(0x0C);}}}
+ 117          void RF3(){
+C51 COMPILER V9.53.0.0   PROGRAM                                                           02/06/2025 15:21:30 PAGE 3   
+
+ 118   1        R1=R2=R3=R4=1;
+ 119   1        C1=C2=C3=0;
+ 120   1        if(R1==0){
+ 121   2        P0=(0x4F);
+ 122   2        IN1=0;
+ 123   2        IN2=0;
+ 124   2        IN3=1;
+ 125   2        IN4=0;
+ 126   2        delay();
+ 127   2        cmd(0x01);
+ 128   2        print("M2Forw",6);
+ 129   2        cmd(0x0C);}
+ 130   1        if(R2==0){
+ 131   2        P0=(0x7D);
+ 132   2        IN1=0;
+ 133   2        IN2=1;
+ 134   2        IN3=0;
+ 135   2        IN4=1;
+ 136   2        delay();
+ 137   2        cmd(0x01);
+ 138   2        print("M1 M2Rev",8);
+ 139   2        cmd(0x0C);}
+ 140   1        if(R3==0){
+ 141   2        P0=(0x6F);
+ 142   2        IN1=0;
+ 143   2        IN2=0;
+ 144   2        IN3=0;
+ 145   2        IN4=0;
+ 146   2        delay();
+ 147   2        cmd(0x01);
+ 148   2        print("All Off",7);
+ 149   2        cmd(0x0C);}}
+ 150          void print(unsigned char name[],unsigned int a){
+ 151   1        int i;
+ 152   1        for(i=0;i<a;i++){
+ 153   2        dat(name[i]);}}
+ 154          void cmd(unsigned char a){
+ 155   1        P3=a;
+ 156   1        RS=0;
+ 157   1        RW=0;
+ 158   1        EN=1;
+ 159   1        delay();
+ 160   1        EN=0;}
+ 161          void dat(unsigned char a){
+ 162   1        P3=a;
+ 163   1        RS=1;
+ 164   1        RW=0;
+ 165   1        EN=1;
+ 166   1        delay();
+ 167   1        EN=0;}
+ 168          void delay(){
+ 169   1        unsigned int i;
+ 170   1        for(i=0;i<20000;i++);}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    578    ----
+   CONSTANT SIZE    =     78    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.53.0.0   PROGRAM                                                           02/06/2025 15:21:30 PAGE 4   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
