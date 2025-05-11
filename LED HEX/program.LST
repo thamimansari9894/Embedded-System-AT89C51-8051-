@@ -1,0 +1,26 @@
+C51 COMPILER V9.53.0.0   PROGRAM                                                           01/18/2025 10:46:20 PAGE 1   
+
+
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROGRAM
+OBJECT MODULE PLACED IN program.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE program.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          void delay (){
+   3   1       volatile long i;
+   4   1      for(i=0;i<50000;i++);}
+   5          void main(){
+   6   1        P2=0x00;
+   7   1        while(1){
+   8   2          for(unsigned char i=1i<=255;i++)
+*** ERROR C141 IN LINE 8 OF program.c: syntax error near 'unsigned'
+*** ERROR C202 IN LINE 8 OF program.c: 'i': undefined identifier
+*** ERROR C141 IN LINE 8 OF program.c: syntax error near 'i'
+*** ERROR C202 IN LINE 8 OF program.c: 'i': undefined identifier
+*** ERROR C141 IN LINE 8 OF program.c: syntax error near ')'
+   9   2          delay();}}
+  10            
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  5 ERROR(S)
