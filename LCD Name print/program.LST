@@ -1,0 +1,75 @@
+C51 COMPILER V9.53.0.0   PROGRAM                                                           01/30/2025 17:54:53 PAGE 1   
+
+
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROGRAM
+OBJECT MODULE PLACED IN program.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE program.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit RS=P2^0;
+   3          sbit RW=P2^1;
+   4          sbit EN=P2^2;
+   5          void cmd(unsigned char a);
+   6          void dat(unsigned char a);
+   7          void delay();
+   8          void print(unsigned char name[],unsigned int a);
+   9          void main(){
+  10   1      cmd(0x38);
+  11   1      cmd(0x0C);
+  12   1      cmd(0x10);
+  13   1      cmd(0x01);
+  14   1      cmd(0x06);
+  15   1      cmd(0x80);
+  16   1      cmd(0xC0);
+  17   1      while(1){
+  18   2          print("Ansari",6);
+  19   2          cmd(0x01);
+  20   2          cmd(0xC0);
+  21   2          print("Immortal",8);
+  22   2          cmd(0x01);
+  23   2          cmd(0xC0);
+  24   2          print("Luffy",5);
+  25   2          cmd(0x01);
+  26   2          cmd(0xC0);
+  27   2          print("Zoro",4);
+  28   2          cmd(0x01);
+  29   2          cmd(0xC0);}}
+  30          void print(unsigned char name[],unsigned int a){
+  31   1        int i;
+  32   1        for(i=0;i<a;i++){
+  33   2        dat(name[i]);}}
+  34          void cmd(unsigned char a){
+  35   1        P3=a;
+  36   1        RS=0;
+  37   1        RW=0;
+  38   1        EN=1;
+  39   1        delay();
+  40   1        EN=0;}
+  41          void dat(unsigned char a){
+  42   1        P3=a;
+  43   1        RS=1;
+  44   1        RW=0;
+  45   1        EN=1;
+  46   1        delay();
+  47   1        EN=0;}
+  48          void delay(){
+  49   1        unsigned int i;
+  50   1        for(i=0;i<30000;i++);}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    224    ----
+   CONSTANT SIZE    =     27    ----
+C51 COMPILER V9.53.0.0   PROGRAM                                                           01/30/2025 17:54:53 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
