@@ -1,0 +1,98 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/23/2025  11:17:47  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE program.obj TO program
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  program.obj (PROGRAM)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SLCMP)
+
+
+LINK MAP OF MODULE:  program (PROGRAM)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000BH     UNIT         _DATA_GROUP_
+            IDATA   0013H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     010CH     UNIT         ?C?LIB_CODE
+            CODE    090CH     0043H     UNIT         ?PR?MAIN?PROGRAM
+            CODE    094FH     000CH     UNIT         ?C_C51STARTUP
+            CODE    095BH     000AH     UNIT         ?CO?PROGRAM
+
+
+
+OVERLAY MAP OF MODULE:   program (PROGRAM)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?PROGRAM
+
+?PR?MAIN?PROGRAM               0008H    000BH
+  +--> ?CO?PROGRAM
+
+
+
+SYMBOL TABLE OF MODULE:  program (PROGRAM)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        PROGRAM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:090CH         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/23/2025  11:17:47  PAGE 2
+
+
+  C:095BH         SYMBOL        _?ix1000
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        seg
+  D:0012H         SYMBOL        x
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:090CH         LINE#         2
+  C:090CH         LINE#         3
+  C:091FH         LINE#         6
+  C:0922H         LINE#         7
+  C:0922H         LINE#         8
+  C:0922H         LINE#         9
+  C:0925H         LINE#         10
+  C:0925H         LINE#         11
+  C:092DH         LINE#         12
+  C:0946H         LINE#         13
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        PROGRAM
+
+  -------         MODULE        ?C?COPY
+  C:08D0H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?SLCMP
+  C:08F6H         PUBLIC        ?C?SLCMP
+  -------         ENDMOD        ?C?SLCMP
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 004DH BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=20.0 xdata=0 code=360
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
